@@ -58,8 +58,8 @@ def combine_2_conditions(basedir, subject, cat1, cat1col, cat2, cat2col):
         if len(cat2loc) == 1:
             cat2val = cat2.loc[cat2loc[0],cat2col]
             timeline.at[idx,cat2col] = cat2val
-        else:
-            assert (len(cat2loc) == 0)
+        # else:
+        #     assert (len(cat2loc) == 0)
 
     # add transitions
     timeline['transition'] = False
@@ -68,6 +68,7 @@ def combine_2_conditions(basedir, subject, cat1, cat1col, cat2, cat2col):
             timeline.at[idx,'transition'] = True
 
     timeline['subject_ID'] = subject
+    timeline.to_csv(os.path.join(basedir, "derivatives/preoprocessed/conditions/%s_by_%s"%(cat1, cat2)))
     return timeline
 
 def secondsdif(row):
