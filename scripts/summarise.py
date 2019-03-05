@@ -5,7 +5,7 @@ import pandas as pd
 import numpy as np
 import os
 
-basedir = "/Users/jokedurnez/Desktop/Heather Info for CAFE Physio Pilot/Preliminary Physio Wristband Data for Mollie/data/"
+basedir = "/Users/jokedurnez/Box/CAFE Consortium/Heather Info for CAFE Physio Pilot/Preliminary Physio Wristband Data for Mollie/data/"
 
 outsummary = os.path.join(basedir,'derivatives/summary_conditions')
 if not os.path.exists(outsummary):
@@ -66,15 +66,15 @@ for condition in conditions:
     # onsettable = utils_onsets.extract_onsets_subject(all_subjects, subid, cat1, cat1col, cat2, cat2col, cat2val)
 
     includetransition = True
-    # for includetransition in [False, True]:
-    suffix = "" if includetransition else "_trimmed"
-    outfile = os.path.join(outsummary,"conditions_%s-%s_%s-%s%s.csv"%(cat1,cat1col,cat2,cat2col,suffix))
-    grouped = utils_combine.group_2_conditions(all_subjects, cat1col, cat2col, includetransition)
-    grouped.to_csv(outfile,index=False)
+    for includetransition in [False, True]:
+        suffix = "" if includetransition else "_trimmed"
+        outfile = os.path.join(outsummary,"conditions_%s-%s_%s-%s%s.csv"%(cat1,cat1col,cat2,cat2col,suffix))
+        grouped = utils_combine.group_2_conditions(all_subjects, cat1col, cat2col, includetransition)
+        grouped.to_csv(outfile,index=False)
 
-    onsettable = utils_onsets.extract_onsets(all_subjects, cat1, cat1col, cat2, cat2col, cat2val)
-    outfile = os.path.join(outonset,"%s-%s_%s-%s-%s.csv"%(cat1,cat1col,cat2,cat2col,cat2val))
-    onsettable.to_csv(outfile,index=False)
+        onsettable = utils_onsets.extract_onsets(all_subjects, cat1, cat1col, cat2, cat2col, cat2val)
+        outfile = os.path.join(outonset,"%s-%s_%s-%s-%s.csv"%(cat1,cat1col,cat2,cat2col,cat2val))
+        onsettable.to_csv(outfile,index=False)
 
 
 
