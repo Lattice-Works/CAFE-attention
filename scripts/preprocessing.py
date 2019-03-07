@@ -6,7 +6,7 @@ import numpy as np
 import os
 
 # set variables for input and output
-basedir = "/Users/jokedurnez/Desktop/Heather Info for CAFE Physio Pilot/Preliminary Physio Wristband Data for Mollie/data/"
+basedir = "/Users/jokedurnez/Box/CAFE Consortium/Heather Info for CAFE Physio Pilot/Preliminary Physio Wristband Data for Mollie/data/"
 outdir = os.path.join(basedir,'derivatives/preprocessed/')
 
 if not os.path.exists(outdir):
